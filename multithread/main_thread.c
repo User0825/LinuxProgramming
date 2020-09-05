@@ -13,6 +13,7 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib. h>
 #include <pthread.h>	//线程头文件
 #include <sys/types.h>  //进程头文件
