@@ -1,6 +1,10 @@
 /* DATE: 2020-09-05
  * AUTHOR : JCY
- * DESCRIPTION: 验证几种线程的退出方式
+ * pthread_jo1n( pthread_t t1d, void **rval);.
+ * 		调用该函数ud线程会阻塞，直到线程tid終止，而且会使tid分离
+ *		如果tid已经分离，那么调用pthread_ join就会失败
+ * pthread_detach( pthread_t tid);
+ *		分离有tid制定到线程
  */
  
  #include <stdio.h>
@@ -38,8 +42,8 @@
 	 printf("join1 rval is %d.\n",pthread_join(tid1, &rval1));
 	 printf("join2 rval is %d.\n",pthread_join(tid2, &rval2));
 	 
-	 printf("thread1 exit code is %d.\n", (int *)rval1);
-	 printf("thread2 exit code is %d.\n", (int *)rval2);
+	 printf("thread1 exit code is %d.\n", *((int *)rval1));
+	 printf("thread2 exit code is %d.\n", *((int *)rval2));
 	 printf("main thread.\n");
 	 
 	 return 0;
