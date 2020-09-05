@@ -37,7 +37,7 @@ int main(void){
     pthread_t ntid;
     int err;
 
-    err = pthread_create(ntid,NULL,thread_fun,"new thread");
+    err = pthread_create(&ntid,NULL,thread_fun,"new thread");
     if(err != 0){
 	printf("create new thread failed!\n");
 	return 0;
