@@ -11,7 +11,7 @@
  *		state有两种值: PTHREAD_CANCEL_ENABLE(缺省)和PTHREAD_CANCEL_DISABLE
  *		分别表示收到信号后设为CANCLED状态和忽略CANCEL信号继续运行; 
  *		old_state如果不为NULL则存入原来的Cancel状态以便恢复
- * int pthread_etcanceltype( int type, int *oldtype)  
+ * int pthread_setcanceltype( int type, int *oldtype)  
  *
  *		设置本线程取消动作的执行时机
  *		type由两种取值: PTHREAD_CANCEL_DEFFERED 和 PTHREAD_CANCEL_ASYCHRONOUS，
@@ -28,6 +28,7 @@
  
  void *thread_fun(void *arg){
 	 int stateval;
+	 int typeval;
 	 stateval = pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
 	 if(stateval != 0){
 		 printf("set state failed.\n");
@@ -39,6 +40,10 @@
 	 stateval = pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 	 if(stateval != 0){
 		 printf("set cancel state failed.\n");
+	 }
+	 typeval = pthread_setcanceltype(PTHREAD_CANCEL_DEFFERED, NULL);
+	 if(typeval != 0){
+		 printf("set cancel type failed.\n");
 	 }
 	 printf("first cancel point.\n");
 	 printf("second cancel point.\n");
@@ -65,7 +70,7 @@
 	 }
 	 jval = pthread_join(tid, &rval);
 	 
-	 printf("new thread exit code is %d.\n", (int *)rval);
+	 printf("new thread exit code is %d.\n", *((int *)rval));
 	 
 	 return 0;
  }
