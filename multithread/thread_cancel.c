@@ -14,7 +14,7 @@
  * int pthread_setcanceltype( int type, int *oldtype)  
  *
  *		设置本线程取消动作的执行时机
- *		type由两种取值: PTHREAD_CANCEL_DEFFERED 和 PTHREAD_CANCEL_ASYCHRONOUS，
+ *		type由两种取值: PTHREAD_CANCEL_DEFERRED 和 PTHREAD_CANCEL_ASYCHRONOUS，
  *		仅当Cancel状态为Enable时有效，分别表示收到信号后继续运行至下一个取消点
  *		再退出和立即执行取消动作(退出) ; oldtype如果不为NULL则存入运来的取消动作类型值
  */
@@ -41,7 +41,7 @@
 	 if(stateval != 0){
 		 printf("set cancel state failed.\n");
 	 }
-	 typeval = pthread_setcanceltype(PTHREAD_CANCEL_DEFFERED, NULL);
+	 typeval = pthread_setcanceltype(PTHREAD_CANCEL_DEFERRED, NULL);
 	 if(typeval != 0){
 		 printf("set cancel type failed.\n");
 	 }
