@@ -4,6 +4,8 @@
  #include <pthread.h>
  #include <sys/types.h>  //进程头文件
  #include <unistd.h>     //进程头文件
+ #include <signal.h>     //包含SIGQUIT定义
+ #include <errno.h>		 //错误码头文件 包含ESRCH定义
  
  void *thread_fun(void *arg){
 	 sleep(1);
