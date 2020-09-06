@@ -1,12 +1,12 @@
 /* AUTHOR: JCY
  * DATE: 2020-09-06.
  * DECRIPTION:  处理信号
- * int pthread_kill( pthread. .t. thread, int s1g);
+ * int pthread_kill( pthread_t thread, int sig);
  * 		向线程thread发送sig信号，成功返回0，失败返回错误码
  * int sigaction( int signum， const struct sigaction *act，struct sigaction *oldact);
  * 		为信号signum设置处理函数，处理函数在sigaction中指定 
  *      act.sa_mask信号屏蔽字
- *		act.sa_handler信导集处理程序
+ *		act.sa_handler信号集处理程序
  * int pthread_sigmask( int how, const sigset_t *set， sigset_t *oldset);
  *		多线程信号屏蔽函数
  *		how = SIG_BLOCK:向当前的信号掩码中添加set，其中set表示要阻塞的信号组
@@ -21,6 +21,8 @@
  #include <pthread.h>
  #include <sys/types.h>  //进程头文件
  #include <unistd.h>     //进程头文件
+ #include <signal.h>
+ #include <errno.h>
  
  void sig_handler1(int arg){
 	 printf("thread1 get signal.\n");
@@ -72,7 +74,7 @@
 		 return;
 	 }
 	 
-	 err = pthread_create(&tid2, NULL, thread_fun1, NULL);
+	 err = pthread_create(&tid2, NULL, thread_fun2, NULL);
 	 if(err != 0){
 		 printf("create new thread 2 failed.\n");
 		 return;
