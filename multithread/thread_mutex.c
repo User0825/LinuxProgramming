@@ -70,20 +70,20 @@
 	 // 创造新线程
 	 err = pthread_create(&tid1, NULL, thread_fun1, NULL);
 	 if(err != 0){
-		 printf("create new thread 1 failed!\n);
+		 printf("create new thread 1 failed!\n");
 		 return 0;
 	 }
 	 
 	 // 创造新线程
 	 err = pthread_create(&tid2, NULL, thread_fun2, NULL);
 	 if(err != 0){
-		 printf("create new thread 2 failed!\n);
+		 printf("create new thread 2 failed!\n");
 		 return 0;
 	 }
 	 
 	 // 等待新线程运行结束
 	 pthread_join(tid1, NULL);
-	 pthread_join(tid2, NULL;
+	 pthread_join(tid2, NULL);
 	 
 	 return 0;
  }
