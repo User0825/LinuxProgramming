@@ -1,6 +1,6 @@
 /* AUTHOR: JCY
  * DATE: 2020-09-07.
- * DESCRIPTION: 多线程访问变量产生错误的例子
+ * DESCRIPTION: 多线程加锁访问变量的例子
  */
  
  #include <stdio.h>
