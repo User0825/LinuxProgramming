@@ -37,7 +37,7 @@
  }
  
  //存储一个数据到buffer
- void put(struct product_cons *p){
+ void put(struct product_cons *p, int data){
 	pthread_mutex_lock(&p->lock);
 	if((p->writepos + 1)%BUFFER_SIZE == p->readpos){
 		printf("producer wait for not full.\n");
@@ -58,7 +58,7 @@
 
 	pthread_mutex_lock(&p->lock);
 	
-	if(p->readpos == writepos){
+	if(p->readpos == p->writepos){
 		printf("consumer wait for not empty.\n");
 		pthread_cond_wait(&p->notempty,&p->lock);
 	}
@@ -78,7 +78,7 @@
  
  void *producer(void *data){		//子线程 生产
 	 int n;
-	 for(n = 1; n <= 50; ++n){		//生产53个产品
+	 for(n = 1; n <= 50; ++n){		//生产50个产品
 		 sleep(1);
 		 printf("put the %d product....\n", n);
 		 put(&buffer, n);
